@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funds", "Funds\Funds.csproj", "{DC79460C-3273-4559-8815-EE152AB4F6BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funds.Tests", "Funds.Tests\Funds.Tests.csproj", "{9730D7FA-D48C-4727-A740-10D6530BC3E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC79460C-3273-4559-8815-EE152AB4F6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC79460C-3273-4559-8815-EE152AB4F6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC79460C-3273-4559-8815-EE152AB4F6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC79460C-3273-4559-8815-EE152AB4F6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9730D7FA-D48C-4727-A740-10D6530BC3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9730D7FA-D48C-4727-A740-10D6530BC3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9730D7FA-D48C-4727-A740-10D6530BC3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9730D7FA-D48C-4727-A740-10D6530BC3E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
