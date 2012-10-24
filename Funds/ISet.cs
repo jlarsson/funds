@@ -4,7 +4,7 @@ namespace Funds
 {
     public interface ISet<T>: IEnumerable<T>
     {
-        bool IsEmpty();
+        bool IsEmpty { get; }
         bool Contains(T value);
         ISet<T> Add(T value);
     }

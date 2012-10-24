@@ -22,9 +22,9 @@ namespace Funds.Trees.RedblackTree
 
         public abstract ITreeModule<T> Module { get; }
 
-        public bool IsEmpty()
+        public bool IsEmpty
         {
-            return false;
+            get { return false; }
         }
 
         public T GetValue()
@@ -82,7 +82,7 @@ namespace Funds.Trees.RedblackTree
         {
             var s = new Stack<INode<T>>();
             INode<T> n = this;
-            while (!n.IsEmpty())
+            while (!n.IsEmpty)
             {
                 s.Push(n);
                 n = n.GetLeft();
@@ -92,7 +92,7 @@ namespace Funds.Trees.RedblackTree
                 var t = s.Pop();
                 yield return t;
                 t = t.GetRight();
-                while (!t.IsEmpty())
+                while (!t.IsEmpty)
                 {
                     s.Push(t);
                     t = t.GetLeft();

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Funds.Trees.TreeSet;
+using Funds.Trees.AvlTree.Set;
 
 namespace Funds
 {
@@ -7,7 +6,8 @@ namespace Funds
     {
         public static ISet<T> Empty<T>()
         {
-            return new TreeSetEmptyNode<T>(new TreeSetModule<T>(Comparer<T>.Default));
+            //return new TreeSetEmptyNode<T>(new TreeSetModule<T>(Comparer<T>.Default));
+            return (ISet<T>)new SetModule<T>().Empty;
         }
     }
 }

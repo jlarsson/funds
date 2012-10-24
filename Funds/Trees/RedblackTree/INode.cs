@@ -5,7 +5,7 @@ namespace Funds.Trees.RedblackTree
     public interface INode<T>
     {
         ITreeModule<T> Module { get; }
-        bool IsEmpty();
+        bool IsEmpty { get; }
         T GetValue();
         INode<T> GetLeft();
         INode<T> GetRight();

@@ -9,9 +9,9 @@ namespace Funds.Trees.RedblackTree
 
         public abstract ITreeModule<T> Module { get; }
 
-        public bool IsEmpty()
+        public bool IsEmpty
         {
-            return true;
+            get { return true; }
         }
 
         public T GetValue()

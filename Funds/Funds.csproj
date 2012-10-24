@@ -53,6 +53,16 @@
     <Compile Include="Stacks\StackNode.cs" />
     <Compile Include="Stacks\EmptyStack.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Trees\AvlTree\AvlTreeModule.cs" />
+    <Compile Include="Trees\AvlTree\Set\SetModule.cs" />
+    <Compile Include="Trees\AvlTree\Set\SetNode.cs" />
+    <Compile Include="Trees\AvlTree\Set\SetSingle.cs" />
+    <Compile Include="Trees\AvlTree\Single.cs" />
+    <Compile Include="Trees\AvlTree\Empty.cs" />
+    <Compile Include="Trees\AvlTree\IAvlNode.cs" />
+    <Compile Include="Trees\AvlTree\IAvlTreeModule.cs" />
+    <Compile Include="Trees\AvlTree\Node.cs" />
+    <Compile Include="Trees\AvlTree\Set\SetEmpty.cs" />
     <Compile Include="Trees\RedblackTree\AbstractEmptyNode.cs" />
     <Compile Include="Trees\TreeMap\AbstractTreeMapColorNode.cs" />
     <Compile Include="Trees\TreeMap\BlackTreeMapNode.cs" />
