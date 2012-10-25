@@ -55,6 +55,10 @@
     <Compile Include="Map.cs" />
     <Compile Include="Trees\AvlTree\AvlNodeEnumerator.cs" />
     <Compile Include="Trees\AvlTree\AvlTreeModule.cs" />
+    <Compile Include="Trees\AvlTree\Map\MapEmpty.cs" />
+    <Compile Include="Trees\AvlTree\Map\MapModule.cs" />
+    <Compile Include="Trees\AvlTree\Map\MapNode.cs" />
+    <Compile Include="Trees\AvlTree\Map\MapSingle.cs" />
     <Compile Include="Trees\AvlTree\Set\SetModule.cs" />
     <Compile Include="Trees\AvlTree\Set\SetNode.cs" />
     <Compile Include="Trees\AvlTree\Set\SetSingle.cs" />

@@ -2,14 +2,11 @@ using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree.Set
 {
-    public class SetModule<T>: IAvlTreeModule<T>
+    public class SetModule<T> : IAvlTreeModule<T>
     {
+        public static readonly SetModule<T> Default = new SetModule<T>(Comparer<T>.Default);
         private readonly IComparer<T> _comparer;
-        private readonly SetEmpty<T> _empty;
-
-        public SetModule() : this(Comparer<T>.Default)
-        {
-        }
+        private readonly IAvlNode<T> _empty;
 
         public SetModule(IComparer<T> comparer)
         {
@@ -31,11 +28,9 @@ namespace Funds.Trees.AvlTree.Set
 
         public IAvlNode<T> CreateNode(IAvlNode<T> left, T value, IAvlNode<T> right)
         {
-            if (left.IsEmpty && right.IsEmpty)
-            {
-                return new SetSingle<T>(this, value);
-            }
-            return new SetNode<T>(this, left, value, right);
+            return left.IsEmpty && right.IsEmpty
+                       ? (IAvlNode<T>) new SetSingle<T>(this, value)
+                       : new SetNode<T>(this, left, value, right);
         }
 
         public int Compare(T a, T b)

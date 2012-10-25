@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -7,6 +8,13 @@ namespace Funds.Tests
     [TestFixture]
     public class SetFixture
     {
+        [Test]
+        public void SetCanBeInitialized()
+        {
+            var s = new Set<int> {1, 2, 3, 4, 5};
+
+        }
+
         [Test]
         public void SetIsAnOrderedCollection()
         {
@@ -50,6 +58,31 @@ namespace Funds.Tests
             set = numbersToRemove.Aggregate(set, (s, i) => s.Remove(i));
 
             Assert.That(set.ToArray(), Is.EqualTo(remainingNumbers));
+        }
+
+        [Test]
+        public void CustomComparer()
+        {
+            var strings = new[] {"a", "A", "b", "B"};
+
+            var set = strings.Aggregate(
+                Set.Empty(StringComparer.OrdinalIgnoreCase),
+                (s, v) => s.Add(v));
+
+            Assert.That(set.Select(s => s.ToLower()).ToArray(),Is.EqualTo(new[]{"a","b"}));
+        }
+
+        [Test]
+        public void AddingDuplicateValueOverwrites()
+        {
+            // Initialize with lowercase values
+            var s = Set.Empty(StringComparer.OrdinalIgnoreCase)
+                .Add("a").Add("b");
+
+            // Overwrite with uppercase values
+            s = s.Add("A").Add("B");
+
+            Assert.That(s.ToArray(), Is.EqualTo(new[] { "A", "B" }));
         }
     }
 }

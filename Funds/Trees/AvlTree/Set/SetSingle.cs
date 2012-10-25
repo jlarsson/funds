@@ -16,13 +16,12 @@ namespace Funds.Trees.AvlTree.Set
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            yield return Value;
         }
 
         public bool Contains(T value)
         {
             return false;
-
         }
 
         public ISet<T> Add(T value)

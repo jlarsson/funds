@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Funds.Trees.AvlTree.Set
 {
@@ -12,13 +11,12 @@ namespace Funds.Trees.AvlTree.Set
 
         public IEnumerator<T> GetEnumerator()
         {
-            //return CreateEnumerator(n => n.Value);
-            return (Enumerate().Select(n => n.Value)).GetEnumerator();
+            return CreateEnumerator(n => n.Value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return CreateEnumerator(n => n.Value);
         }
 
         public bool Contains(T value)

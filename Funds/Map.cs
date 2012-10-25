@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Funds.Trees.TreeMap;
+using Funds.Trees.AvlTree.Map;
 
 namespace Funds
 {
@@ -7,7 +7,12 @@ namespace Funds
     {
         public static IMap<TKey, TValue> Empty<TKey, TValue>()
         {
-            return new TreeMapEmptyNode<TKey, TValue>(new TreeMapModule<TKey, TValue>(Comparer<TKey>.Default));
+            return (IMap<TKey, TValue>) MapModule<TKey, TValue>.Default.Empty;
+        }
+
+        public static IMap<TKey, TValue> Empty<TKey, TValue>(IComparer<TKey> comparer)
+        {
+            return (IMap<TKey,TValue>)new MapModule<TKey, TValue>(comparer).Empty;
         }
     }
 }

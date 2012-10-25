@@ -1,30 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Funds.Trees.AvlTree.Set
 {
-    public class SetEmpty<T>: Empty<T>, ISet<T>
+    public class SetEmpty<T> : Empty<T>, ISet<T>
     {
         public SetEmpty(IAvlTreeModule<T> module) : base(module)
         {
         }
 
+        #region ISet<T> Members
+
         public IEnumerator<T> GetEnumerator()
         {
-            return (Enumerate().Select(n => n.Value)).GetEnumerator();
-
+            yield break;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            yield break;
         }
 
         public bool Contains(T value)
         {
             return false;
-
         }
 
         public ISet<T> Add(T value)
@@ -36,5 +35,7 @@ namespace Funds.Trees.AvlTree.Set
         {
             return this;
         }
+
+        #endregion
     }
 }
