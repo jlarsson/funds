@@ -89,7 +89,7 @@ namespace Funds.Trees.AvlTree
             return this;
         }
 
-        public IAvlNode<T> Insert(T value)
+        public IAvlNode<T> Update(T value)
         {
             return Module.CreateSingle(value);
         }

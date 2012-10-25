@@ -33,7 +33,7 @@ namespace Funds.Trees.AvlTree.Map
 
         public IMap<TKey, TValue> Add(TKey key, TValue value)
         {
-            return (IMap<TKey, TValue>) Insert(new KeyValuePair<TKey, TValue>(key, value));
+            return (IMap<TKey, TValue>) Update(new KeyValuePair<TKey, TValue>(key, value));
         }
 
         #endregion

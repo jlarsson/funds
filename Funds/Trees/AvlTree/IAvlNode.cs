@@ -20,7 +20,7 @@ namespace Funds.Trees.AvlTree
         IEnumerable<IAvlNode<T>> Enumerate();
         IEnumerator<TEnum> CreateEnumerator<TEnum>(Func<IAvlNode<T>, TEnum> map);
         IAvlNode<T> Find(T value);
-        IAvlNode<T> Insert(T value);
+        IAvlNode<T> Update(T value);
         IAvlNode<T> Delete(T value);
     }
 }

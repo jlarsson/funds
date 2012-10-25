@@ -9,19 +9,9 @@ namespace Funds.Tests
     public class SetFixture
     {
         [Test]
-        public void SetCanBeInitialized()
-        {
-            var s = new Set<int> {1, 2, 3, 4, 5};
-
-        }
-
-        [Test]
         public void SetIsAnOrderedCollection()
         {
-            var set = Enumerable.Range(0, 1024).Shuffle()
-                .Aggregate(
-                    Set.Empty<int>(),
-                    (s, i) => s.Add(i));
+            var set = Set.ToSet(Enumerable.Range(0, 1024).Shuffle());
 
             Assert.That(set.ToArray(), Is.EqualTo(Enumerable.Range(0, 1024).ToArray()));
         }
@@ -30,15 +20,15 @@ namespace Funds.Tests
         public void Remove()
         {
             var numbers = Enumerable.Range(0, 16*1024).ToArray();
+
             var numbersToRemove = new HashSet<int>(from n in numbers where ((n%3) == 0) || ((n%7) == 0) select n);
             var remainingNumbers = (from n in numbers where !numbersToRemove.Contains(n) select n).ToArray();
 
             // Create initial set
-            var set = numbers
-                .Aggregate(Set.Empty<int>(),(s, i) => s.Add(i));
+            var set = Set.ToSet(numbers);
 
             // Remove some numbers
-            set = numbersToRemove.Aggregate(set, (s, i) => s.Remove(i));
+            set = set.Remove(numbersToRemove);
 
             Assert.That(set.ToArray(), Is.EqualTo(remainingNumbers));
         }
@@ -51,11 +41,10 @@ namespace Funds.Tests
             var remainingNumbers = new int[0];
 
             // Create initial set
-            var set = numbers
-                .Aggregate(Set.Empty<int>(), (s, i) => s.Add(i));
+            var set = Set.ToSet(numbers);
 
             // Remove some numbers
-            set = numbersToRemove.Aggregate(set, (s, i) => s.Remove(i));
+            set = set.Remove(numbersToRemove);
 
             Assert.That(set.ToArray(), Is.EqualTo(remainingNumbers));
         }

@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Funds.Trees.AvlTree.Set;
 
 namespace Funds
@@ -15,54 +15,25 @@ namespace Funds
         {
             return (ISet<T>) new SetModule<T>(comparer).Empty;
         }
-    }
 
-    public class Set<T>: ISet<T>
-    {
-        private ISet<T> _inner;
-
-        public Set()
+        public static ISet<T> Add<T>(this ISet<T> set, IEnumerable<T> values)
         {
-            _inner = Set.Empty<T>();
-        }
-        public Set(IComparer<T> comparer)
-        {
-            _inner = Set.Empty<T>();
+            return values.Aggregate(set, (s, v) => s.Add(v));
         }
 
-        public bool IsEmpty
+        public static ISet<T> Remove<T>(this ISet<T> set, IEnumerable<T> values)
         {
-            get { return _inner.IsEmpty; }
+            return values.Aggregate(set, (s, v) => s.Remove(v));
         }
 
-        public bool Contains(T value)
+        public static ISet<T> ToSet<T>(IEnumerable<T> enumerable)
         {
-            return _inner.Contains(value);
+            return enumerable.Aggregate(Empty<T>(), (s, i) => s.Add(i));
         }
 
-        ISet<T> ISet<T>.Add(T value)
+        public static ISet<T> ToSet<T>(this IEnumerable<T> enumerable, IComparer<T> comparer)
         {
-            return _inner.Add(value);
-        }
-
-        public ISet<T> Remove(T value)
-        {
-            return _inner.Remove(value);
-        }
-
-        public void Add(T value)
-        {
-            _inner = _inner.Add(value);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return _inner.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _inner.GetEnumerator();
+            return enumerable.Aggregate(Empty(comparer), (s, i) => s.Add(i));
         }
     }
 }

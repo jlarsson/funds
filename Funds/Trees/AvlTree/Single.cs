@@ -91,7 +91,7 @@ namespace Funds.Trees.AvlTree
             return Module.Compare(_value, value) == 0 ? this : Module.Empty;
         }
 
-        public IAvlNode<T> Insert(T value)
+        public IAvlNode<T> Update(T value)
         {
             var c = Module.Compare(_value, value);
             if (c == 0)

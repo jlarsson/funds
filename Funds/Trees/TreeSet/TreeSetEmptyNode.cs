@@ -40,7 +40,7 @@ namespace Funds.Trees.TreeSet
 
         public ISet<T> Add(T value)
         {
-            return (ISet<T>) Insert(value);
+            return (ISet<T>) base.Insert(value);
         }
 
         public ISet<T> Remove(T value)

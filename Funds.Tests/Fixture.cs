@@ -1,65 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Numerics;
 using NUnit.Framework;
 
 namespace Funds.Tests
 {
-    public static class EnumerableExtensions
+    public static class Combinator
     {
-        static readonly RNGCryptoServiceProvider RngCryptoServiceProvider = new RNGCryptoServiceProvider();
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable)
+        public static Func<TArgument, TResult> Y<TArgument, TResult>(Func<Func<TArgument, TResult>, Func<TArgument, TResult>> f)
         {
-            var randomIntegerBuffer = new byte[4];
-            Func<int> rand = () =>
-                                 {
-                                     RngCryptoServiceProvider.GetBytes(randomIntegerBuffer);
-                                     return BitConverter.ToInt32(randomIntegerBuffer, 0);
-                                 };
-            return from item in enumerable
-                   let rec = new {item, rnd = rand()}
-                   orderby rec.rnd
-                   select rec.item;
+            Func<TArgument, TResult> g = null;
+
+            g = f(a => g(a));
+            return g;
+        }
+
+        public static Func<TArgument, TResult> MemoY<TArgument, TResult>(this Func<Func<TArgument, TResult>, Func<TArgument, TResult>> f)
+        {
+
+            Func<TArgument, TResult> g = null;
+
+            g = f(a => g(a));
+
+            g = g.Memoize();
+
+            return g;
+        }
+
+        public static Func<TArgument,TResult> Memoize<TArgument,TResult>(this Func<TArgument,TResult> f)
+        {
+            var memo = new Dictionary<TArgument, TResult>();
+            return a =>
+                       {
+                           TResult r;
+                           if (memo.TryGetValue(a, out r))
+                           {
+                               return r;
+                           }
+                           r = f(a);
+                           memo.Add(a, r);
+                           return r;
+                       };
         }
     }
-
     [TestFixture]
     public class Fixture
     {
         [Test]
-        public void Avl()
+        public void Fib()
         {
-            var l = Enumerable.Range(0, 1024).Shuffle().Distinct().ToArray();
+            var fib = Combinator.MemoY<BigInteger, BigInteger>(
+                f => n => n > BigInteger.One ? f(n - BigInteger.One) + f(n - BigInteger.One - BigInteger.One) : n);
 
-            var t = Enumerable.Range(0, 1024).Shuffle()
-                .Aggregate(
-                    Set.Empty<int>(),
-                    (c, i) => c.Add(i));
-
-            var a = t.ToArray();
-        }
-
-        [Test]
-        public void Test()
-        {
-            var m = Enumerable.Range(0, 16*1024)
-                .Aggregate(Map.Empty<int, int>(), (c, i) => c.Add(i,i));
-
-            var a = m.Select(kv => kv.Key).ToArray();
-        }
-
-        [Test]
-        public void Q()
-        {
-            var q = Enumerable.Range(0, 1024)
-                .Aggregate(Queue.Empty<int>(), (_q, i) => _q.Enqueue(i));
-
-            while(!q.IsEmpty())
+            foreach (var i in Enumerable.Range(0, 100).Select(i => new BigInteger(i)))
             {
-                Console.Out.WriteLine(q.Peek());
-                q = q.Dequeue();
+                Console.Out.WriteLine("fib({0}) = {1}", i ,fib(i));
+            }
+
+            var fact = Combinator.MemoY<BigInteger, BigInteger>(f => n => n > BigInteger.One ? n*f(n - BigInteger.One) : BigInteger.One);
+            foreach (var i in Enumerable.Range(0, 100).Select(i => new BigInteger(i)))
+            {
+                Console.Out.WriteLine("{0}! = {1}", i, fact(i));
             }
         }
+
     }
 }

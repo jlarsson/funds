@@ -5,11 +5,11 @@ namespace Funds.Trees.AvlTree
 {
     public class Node<T> : IAvlNode<T>
     {
-        private readonly byte _height;
-        private readonly IAvlNode<T> _left;
-        private readonly IAvlTreeModule<T> _module;
-        private readonly IAvlNode<T> _right;
-        private readonly T _value;
+        readonly byte _height;
+        readonly IAvlNode<T> _left;
+		readonly IAvlTreeModule<T> _module;
+        readonly IAvlNode<T> _right;
+        readonly T _value;
 
         public Node(IAvlTreeModule<T> module, IAvlNode<T> left, T value, IAvlNode<T> right)
         {
@@ -139,7 +139,7 @@ namespace Funds.Trees.AvlTree
             return n;
         }
 
-        public IAvlNode<T> Insert(T value)
+        public IAvlNode<T> Update(T value)
         {
             var c = Module.Compare(_value, value);
             if (c == 0)
@@ -148,8 +148,8 @@ namespace Funds.Trees.AvlTree
             }
             return
                 (c > 0
-                     ? Module.CreateNode(_left.Insert(value), _value, _right)
-                     : Module.CreateNode(_left, _value, _right.Insert(value))).Balance();
+                     ? Module.CreateNode(_left.Update(value), _value, _right)
+                     : Module.CreateNode(_left, _value, _right.Update(value))).Balance();
         }
 
         public IAvlNode<T> Delete(T value)
