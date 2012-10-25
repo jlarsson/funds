@@ -53,6 +53,7 @@
     <Compile Include="Stacks\StackNode.cs" />
     <Compile Include="Stacks\EmptyStack.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Trees\AvlTree\AvlNodeEnumerator.cs" />
     <Compile Include="Trees\AvlTree\AvlTreeModule.cs" />
     <Compile Include="Trees\AvlTree\Set\SetModule.cs" />
     <Compile Include="Trees\AvlTree\Set\SetNode.cs" />

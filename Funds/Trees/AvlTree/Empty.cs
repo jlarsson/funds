@@ -79,6 +79,11 @@ namespace Funds.Trees.AvlTree
             yield break;
         }
 
+        public IEnumerator<T2> CreateEnumerator<T2>(Func<IAvlNode<T>, T2> map)
+        {
+            yield break;
+        }
+
         public IAvlNode<T> Find(T value)
         {
             return this;
@@ -87,6 +92,11 @@ namespace Funds.Trees.AvlTree
         public IAvlNode<T> Insert(T value)
         {
             return Module.CreateSingle(value);
+        }
+
+        public IAvlNode<T> Delete(T value)
+        {
+            return this;
         }
 
         #endregion

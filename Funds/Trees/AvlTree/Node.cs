@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree
@@ -64,7 +65,7 @@ namespace Funds.Trees.AvlTree
 
         public IAvlNode<T> RotateRight()
         {
-            return Module.CreateNode(_left.Left, _left.Left.Value, Module.CreateNode(_left.Right, _value, _right));
+            return Module.CreateNode(_left.Left, _left.Value, Module.CreateNode(_left.Right, _value, _right));
         }
 
         public IAvlNode<T> RotateLeft()
@@ -118,6 +119,11 @@ namespace Funds.Trees.AvlTree
             }
         }
 
+        public IEnumerator<TEnum> CreateEnumerator<TEnum>(Func<IAvlNode<T>, TEnum> map)
+        {
+            return new AvlNodeEnumerator<T, TEnum>(this, map);
+        }
+
         public IAvlNode<T> Find(T value)
         {
             IAvlNode<T> n = this;
@@ -144,6 +150,33 @@ namespace Funds.Trees.AvlTree
                 (c > 0
                      ? Module.CreateNode(_left.Insert(value), _value, _right)
                      : Module.CreateNode(_left, _value, _right.Insert(value))).Balance();
+        }
+
+        public IAvlNode<T> Delete(T value)
+        {
+            var c = Module.Compare(_value, value);
+            if (c == 0)
+            {
+                if (_right.IsEmpty && _left.IsEmpty)
+                {
+                    return Module.Empty;
+                }
+                if (_right.IsEmpty && !_left.IsEmpty)
+                {
+                    return Left;
+                }
+                if (!_right.IsEmpty && _left.IsEmpty)
+                {
+                    return Right;
+                }
+                var successor = _right;
+                while (!successor.Left.IsEmpty)
+                {
+                    successor = successor.Left;
+                }
+                return Module.CreateNode(_left, successor.Value, _right.Delete(successor.Value)).Balance();
+            }
+            return c > 0 ? Module.CreateNode(_left.Delete(value), _value, _right).Balance() : Module.CreateNode(_left, _value, _right.Delete(value)).Balance();
         }
 
         #endregion

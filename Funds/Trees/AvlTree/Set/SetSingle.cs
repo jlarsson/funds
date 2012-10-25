@@ -29,5 +29,10 @@ namespace Funds.Trees.AvlTree.Set
         {
             return (ISet<T>) Insert(value);
         }
+
+        public ISet<T> Remove(T value)
+        {
+            return (ISet<T>) Delete(value);
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Funds
         bool IsEmpty { get; }
         bool Contains(T value);
         ISet<T> Add(T value);
+        ISet<T> Remove(T value);
     }
 }

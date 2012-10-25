@@ -38,5 +38,10 @@ namespace Funds.Trees.TreeSet
         {
             return (ISet<T>)Insert(value);
         }
+
+        public ISet<T> Remove(T value)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

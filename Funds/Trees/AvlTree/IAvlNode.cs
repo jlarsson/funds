@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree
@@ -17,7 +18,9 @@ namespace Funds.Trees.AvlTree
         IAvlNode<T> Left { get; }
         IAvlNode<T> Right { get; }
         IEnumerable<IAvlNode<T>> Enumerate();
+        IEnumerator<TEnum> CreateEnumerator<TEnum>(Func<IAvlNode<T>, TEnum> map);
         IAvlNode<T> Find(T value);
         IAvlNode<T> Insert(T value);
+        IAvlNode<T> Delete(T value);
     }
 }

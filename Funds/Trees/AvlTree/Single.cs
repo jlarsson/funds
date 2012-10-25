@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree
 {
@@ -80,6 +81,11 @@ namespace Funds.Trees.AvlTree
             yield return this;
         }
 
+        public IEnumerator<T2> CreateEnumerator<T2>(Func<IAvlNode<T>, T2> map)
+        {
+            yield return map(this);
+        }
+
         public IAvlNode<T> Find(T value)
         {
             return Module.Compare(_value, value) == 0 ? this : Module.Empty;
@@ -94,7 +100,13 @@ namespace Funds.Trees.AvlTree
             }
             return c > 0
                        ? Module.CreateNode(Module.CreateSingle(value), _value, Module.Empty)
-                       : Module.CreateNode(Module.CreateSingle(_value), value, Module.Empty);
+                       : Module.CreateNode(Module.Empty, _value, Module.CreateSingle(value));
+
+        }
+
+        public IAvlNode<T> Delete(T value)
+        {
+            return Module.Compare(_value, value) == 0 ? Module.Empty : this;
         }
 
         #endregion

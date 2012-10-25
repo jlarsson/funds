@@ -12,6 +12,7 @@ namespace Funds.Trees.AvlTree.Set
 
         public IEnumerator<T> GetEnumerator()
         {
+            //return CreateEnumerator(n => n.Value);
             return (Enumerate().Select(n => n.Value)).GetEnumerator();
         }
 
@@ -28,6 +29,11 @@ namespace Funds.Trees.AvlTree.Set
         public ISet<T> Add(T value)
         {
             return (ISet<T>) Insert(value);
+        }
+
+        public ISet<T> Remove(T value)
+        {
+            return (ISet<T>) Delete(value);
         }
     }
 }

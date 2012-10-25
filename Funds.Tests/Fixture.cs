@@ -1,23 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Funds.Trees.AvlTree;
+using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace Funds.Tests
 {
+    public static class EnumerableExtensions
+    {
+        static readonly RNGCryptoServiceProvider RngCryptoServiceProvider = new RNGCryptoServiceProvider();
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable)
+        {
+            var randomIntegerBuffer = new byte[4];
+            Func<int> rand = () =>
+                                 {
+                                     RngCryptoServiceProvider.GetBytes(randomIntegerBuffer);
+                                     return BitConverter.ToInt32(randomIntegerBuffer, 0);
+                                 };
+            return from item in enumerable
+                   let rec = new {item, rnd = rand()}
+                   orderby rec.rnd
+                   select rec.item;
+        }
+    }
+
     [TestFixture]
     public class Fixture
     {
         [Test]
         public void Avl()
         {
-            var t = Enumerable.Range(0, 1024*1024)
+            var l = Enumerable.Range(0, 1024).Shuffle().Distinct().ToArray();
+
+            var t = Enumerable.Range(0, 1024).Shuffle()
                 .Aggregate(
                     Set.Empty<int>(),
                     (c, i) => c.Add(i));
 
             var a = t.ToArray();
         }
+
         [Test]
         public void Test()
         {
