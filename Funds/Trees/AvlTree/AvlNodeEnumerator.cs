@@ -4,16 +4,19 @@ using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree
 {
-    public class AvlNodeEnumerator<T, TEnum>: Stack<IAvlNode<T>>, IEnumerator<TEnum>
+    public class AvlNodeEnumerator<T, TEnum> : Stack<IAvlNode<T>>, IEnumerator<TEnum>
     {
-        private readonly IAvlNode<T> _node;
         private readonly Func<IAvlNode<T>, TEnum> _map;
+        private readonly IAvlNode<T> _node;
         private bool _started;
+
         public AvlNodeEnumerator(IAvlNode<T> node, Func<IAvlNode<T>, TEnum> map)
         {
             _node = node;
             _map = map;
         }
+
+        #region IEnumerator<TEnum> Members
 
         public void Dispose()
         {
@@ -58,5 +61,7 @@ namespace Funds.Trees.AvlTree
         {
             get { return Current; }
         }
+
+        #endregion
     }
 }

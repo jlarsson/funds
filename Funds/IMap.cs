@@ -8,5 +8,6 @@ namespace Funds
         bool ContainsKey(TKey key);
         TValue TryGetValue(TKey key, TValue defaultValue = default (TValue));
         IMap<TKey, TValue> Add(TKey key, TValue value);
+        IMap<TKey, TValue> Remove(TKey key);
     }
 }

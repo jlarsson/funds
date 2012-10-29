@@ -35,6 +35,11 @@ namespace Funds.Trees.TreeMap
             return (IMap<TKey, TValue>) base.Insert(new KeyValuePair<TKey, TValue>(key, value));
         }
 
+        public IMap<TKey, TValue> Remove(TKey key)
+        {
+            return this;
+        }
+
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             yield break;

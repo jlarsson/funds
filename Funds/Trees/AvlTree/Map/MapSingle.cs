@@ -38,11 +38,11 @@ namespace Funds.Trees.AvlTree.Map
             return (IMap<TKey, TValue>) Update(new KeyValuePair<TKey, TValue>(key, value));
         }
 
-        #endregion
-
         public IMap<TKey, TValue> Remove(TKey key)
         {
             return (IMap<TKey, TValue>) Delete(new KeyValuePair<TKey, TValue>(key, default(TValue)));
         }
+
+        #endregion
     }
 }

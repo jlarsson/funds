@@ -101,7 +101,6 @@ namespace Funds.Trees.AvlTree
             return c > 0
                        ? Module.CreateNode(Module.CreateSingle(value), _value, Module.Empty)
                        : Module.CreateNode(Module.Empty, _value, Module.CreateSingle(value));
-
         }
 
         public IAvlNode<T> Delete(T value)

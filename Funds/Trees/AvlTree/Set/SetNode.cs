@@ -3,11 +3,14 @@ using System.Collections.Generic;
 
 namespace Funds.Trees.AvlTree.Set
 {
-    public class SetNode<T>: Node<T>, ISet<T>
+    public class SetNode<T> : Node<T>, ISet<T>
     {
-        public SetNode(IAvlTreeModule<T> module, IAvlNode<T> left, T value, IAvlNode<T> right) : base(module, left, value, right)
+        public SetNode(IAvlTreeModule<T> module, IAvlNode<T> left, T value, IAvlNode<T> right)
+            : base(module, left, value, right)
         {
         }
+
+        #region ISet<T> Members
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -33,5 +36,7 @@ namespace Funds.Trees.AvlTree.Set
         {
             return (ISet<T>) Delete(value);
         }
+
+        #endregion
     }
 }

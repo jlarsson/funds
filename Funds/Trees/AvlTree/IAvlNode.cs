@@ -10,13 +10,13 @@ namespace Funds.Trees.AvlTree
         byte Height { get; }
         T Value { get; }
         int BalanceFactor { get; }
+        IAvlNode<T> Left { get; }
+        IAvlNode<T> Right { get; }
         IAvlNode<T> Balance();
         IAvlNode<T> RotateRight();
         IAvlNode<T> RotateLeft();
         IAvlNode<T> DoubleRotateRight();
         IAvlNode<T> DoubleRotateLeft();
-        IAvlNode<T> Left { get; }
-        IAvlNode<T> Right { get; }
         IEnumerable<IAvlNode<T>> Enumerate();
         IEnumerator<TEnum> CreateEnumerator<TEnum>(Func<IAvlNode<T>, TEnum> map);
         IAvlNode<T> Find(T value);

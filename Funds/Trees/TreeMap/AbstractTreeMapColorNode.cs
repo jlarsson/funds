@@ -40,6 +40,11 @@ namespace Funds.Trees.TreeMap
             return (IMap<TKey, TValue>) Insert(new KeyValuePair<TKey, TValue>(key, value));
         }
 
+        public IMap<TKey, TValue> Remove(TKey key)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return Enumerate().Select(n => n.GetValue()).GetEnumerator();
