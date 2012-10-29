@@ -2,7 +2,6 @@ packages/
 bin/
 obj/
 pack/
-test-results/
 *.dll
 *.user
 *.suo
@@ -15,3 +14,7 @@ test-results/
 .nuget
 _resharper*
 Thumbs.db
+
+# mono develop
+*.userprefs
+test-results/

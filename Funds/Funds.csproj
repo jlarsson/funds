@@ -68,21 +68,6 @@
     <Compile Include="Trees\AvlTree\IAvlTreeModule.cs" />
     <Compile Include="Trees\AvlTree\Node.cs" />
     <Compile Include="Trees\AvlTree\Set\SetEmpty.cs" />
-    <Compile Include="Trees\RedblackTree\AbstractEmptyNode.cs" />
-    <Compile Include="Trees\TreeMap\AbstractTreeMapColorNode.cs" />
-    <Compile Include="Trees\TreeMap\BlackTreeMapNode.cs" />
-    <Compile Include="Trees\RedblackTree\AbstractColorNode.cs" />
-    <Compile Include="Trees\RedblackTree\INode.cs" />
-    <Compile Include="Trees\RedblackTree\ITreeModule.cs" />
-    <Compile Include="Trees\RedblackTree\NodeColor.cs" />
-    <Compile Include="Trees\TreeMap\RedTreeMapNode.cs" />
-    <Compile Include="Trees\TreeMap\TreeMapEmptyNode.cs" />
-    <Compile Include="Trees\TreeMap\TreeMapModule.cs" />
-    <Compile Include="Trees\TreeSet\AbstractTreeSetColorNode.cs" />
-    <Compile Include="Trees\TreeSet\BlackTreeSetNode.cs" />
-    <Compile Include="Trees\TreeSet\RedTreeSetNode.cs" />
-    <Compile Include="Trees\TreeSet\TreeSetEmptyNode.cs" />
-    <Compile Include="Trees\TreeSet\TreeSetModule.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
